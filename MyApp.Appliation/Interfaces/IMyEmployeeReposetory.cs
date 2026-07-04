@@ -12,9 +12,9 @@ namespace MyApp.Appliation.Interfaces
 
         Task<EmployeeDto> GetEmployeeById(int id);
 
-        Task<string> AddEmployee(MyEnployees employee);
+        Task<string> AddEmployee(EmployeeDto employee);
 
-        Task<string> UpdateEmployee(MyEnployees employee);
+        Task<string> UpdateEmployee(EmployeeDto employee);
 
         Task<string> DeleteEmployee(int id);
 

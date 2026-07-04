@@ -4,3 +4,4 @@ GET {{LearningApplication_HostAddress}}/Api/Employee/GetAllEmployees
 Accept: application/json
 
 ###
+POST {{LearningApplication_HostAddress}}/Api/Employee/AddEmployees

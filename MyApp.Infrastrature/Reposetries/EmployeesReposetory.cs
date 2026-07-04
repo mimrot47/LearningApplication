@@ -33,17 +33,27 @@ namespace MyApp.Infrastrature.Reposetries
             return result;
         }
 
-        public async Task<string> AddEmployee(MyEnployees employee)
+        public async Task<string> AddEmployee(EmployeeDto empdto)
         {
-            await context.MyEmployees.AddAsync(employee);
+            await context.MyEmployees.AddAsync(new MyEnployees
+            {
+                Name = empdto.Name,
+                Description = empdto.Description,
+                Email = empdto.Email,
+            }
+                );
             await context.SaveChangesAsync();
 
             return "Employee added successfully";
         }
 
-        public async Task<string> UpdateEmployee(MyEnployees employee)
+        public async Task<string> UpdateEmployee(EmployeeDto employee)
         {
-            context.MyEmployees.Update(employee);
+            var existUser = await context.MyEmployees.FindAsync(employee.Id);
+            existUser.Email = string.IsNullOrWhiteSpace(employee.Email) ? existUser.Email : employee.Email;
+            existUser.Name = string.IsNullOrWhiteSpace(employee.Name) ? existUser.Name : employee.Name;
+            existUser.Description = string.IsNullOrWhiteSpace(employee.Description) ? existUser.Description : employee.Description;
+            context.MyEmployees.Update(existUser);
             await context.SaveChangesAsync();
 
             return "Employee updated successfully";
