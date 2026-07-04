@@ -1,0 +1,6 @@
+@LearningApplication_HostAddress = http://localhost:5246
+
+GET {{LearningApplication_HostAddress}}/Api/Employee/GetAllEmployees
+Accept: application/json
+
+###

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="LearningApplication/LearningApplication.csproj" />
+  <Project Path="MyApp.Appliation/MyApp.Appliation.csproj" />
+  <Project Path="MyApp.Domain/MyApp.Domain.csproj" />
+  <Project Path="MyApp.Infrastrature/MyApp.Infrastrature.csproj" />
+</Solution>
