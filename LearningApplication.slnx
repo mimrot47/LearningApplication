@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/Solution Items/" />
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
   <Project Path="LearningApplication/LearningApplication.csproj" />
   <Project Path="MyApp.Appliation/MyApp.Appliation.csproj" />
   <Project Path="MyApp.Domain/MyApp.Domain.csproj" />

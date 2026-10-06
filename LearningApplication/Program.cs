@@ -2,27 +2,40 @@ using LearningApplication;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// 1. Define CORS Policy Name
+var allowAngularOrigin = "_allowAngularOrigin";
 
+// 2. Register CORS Service
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: allowAngularOrigin,
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
+// Add services to the container.
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddApiDI(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// Configure Swagger
+app.UseSwagger();
+app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
+// ❌ COMMENT OUT OR REMOVE THIS LINE inside Docker:
+// app.UseHttpsRedirection(); 
+
+// 3. Enable CORS Middleware
+app.UseCors(allowAngularOrigin);
 
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
