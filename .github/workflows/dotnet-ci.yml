@@ -19,7 +19,7 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'   # change to your SDK, e.g. '9.0.x'
+          dotnet-version: '9.0.x'
 
       # 3. Cache NuGet packages (speeds up restore)
       - name: Cache NuGet packages
@@ -32,15 +32,15 @@ jobs:
 
       # 4. Restore dependencies
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore LearningApplication.slnx
 
       # 5. Build (no restore — already done above)
       - name: Build
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build LearningApplication.slnx --no-restore --configuration Release
 
       # 6. Run tests (no build — already built above)
       - name: Test
-        run: dotnet test --no-build --configuration Release --verbosity normal --logger "trx;LogFileName=test-results.trx"
+        run: dotnet test LearningApplication.slnx --no-build --configuration Release --verbosity normal --logger "trx;LogFileName=test-results.trx"
 
       # 7. Upload test results as artifact
       - name: Upload test results
